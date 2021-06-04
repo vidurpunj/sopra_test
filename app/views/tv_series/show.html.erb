@@ -3,7 +3,9 @@
     <span class="card-title"><strong>Series:</strong>  <em><%= @series.name %></em></span>
     <h2>Comments</h2>
     <% @series.comments.each do |comment| %>
-      <p class="card-text"><strong><%= comment.user.name  %></strong> said : <%= comment.review %></p>
+      <p class="card-text"><strong><%= comment.user.name %></strong> said : <%= comment.review %>,
+        Rated: <%= comment.stars %>
+      </p>
     <% end %>
     <a href="/tv_series" class="btn btn-primary">Back</a>
   </div>
