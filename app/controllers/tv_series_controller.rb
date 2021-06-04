@@ -2,7 +2,11 @@ class TvSeriesController < ApplicationController
   require 'roo'
 
   def index
-    @tv_series = TvSeriel.all
+    @tv_series = TvSeriel.includes(:comments).all
+  end
+
+  def show
+    @series = TvSeriel.includes({ comments: [:user] }).find(params[:id])
   end
 
   def create
@@ -21,6 +25,28 @@ class TvSeriesController < ApplicationController
       tv_serial.country = row["Country"]
       tv_serial.save
     end
+    redirect_back(fallback_location: tv_series_index_path)
+  end
+
+  def tv_seriel_comments
+    spreadsheet = Roo::Spreadsheet.open(params[:tv_serial_comments])
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |line|
+      row = HashWithIndifferentAccess[[header, spreadsheet.row(line)].transpose]
+      comment = Comment.new
+      user = User.find_by_name(row["User"])
+      comment.user = user
+      tv_serial = TvSeriel.find_by_name(row['TV Series'])
+      comment.tv_seriel = tv_serial
+      comment.stars = row['Stars']
+      comment.review = row['Review']
+      comment.save
+    end
+    redirect_back(fallback_location: tv_series_index_path)
+  end
+
+  def destroy
+    TvSeriel.find(params[:id]).destroy
     redirect_back(fallback_location: tv_series_index_path)
   end
 end

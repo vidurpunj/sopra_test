@@ -1,0 +1,10 @@
+<div class="card" style="width: 48rem;">
+  <div class="card-body">
+    <h5 class="card-title">Name:  <%= @series.name %></h5>
+    <h2>Comments</h2>
+    <% @series.comments.each do |comment| %>
+      <p class="card-text"><strong><%= comment.user.name  %></strong> said : <%= comment.review %></p>
+    <% end %>
+    <a href="/tv_series" class="btn btn-primary">Back</a>
+  </div>
+</div>
