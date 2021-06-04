@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  genre: MyString
+  seans_count: 1
+  releate_date: 2021-06-04
+  director: MyString
+  actor: MyString
+  shoot_location: MyString
+  country: MyString
+
+two:
+  name: MyString
+  genre: MyString
+  seans_count: 1
+  releate_date: 2021-06-04
+  director: MyString
+  actor: MyString
+  shoot_location: MyString
+  country: MyString

@@ -3,4 +3,5 @@
    mysql database.
 2. Added Jquery, bootstrap and poppoer.js
 3. Added seed required users.
+4. 
 
