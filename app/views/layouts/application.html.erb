@@ -19,10 +19,13 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Videos</a>
+        <%= link_to  'TV series', '/tv_series', class: "nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to  'Users', '/users', class: "nav-link"%>
       </li>
     </ul>
     <ul>

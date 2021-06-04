@@ -3,8 +3,8 @@
 one:
   name: MyString
   genre: MyString
-  seans_count: 1
-  releate_date: 2021-06-04
+  seasons: 1
+  release_date: 2021-06-05
   director: MyString
   actor: MyString
   shoot_location: MyString
@@ -13,8 +13,8 @@ one:
 two:
   name: MyString
   genre: MyString
-  seans_count: 1
-  releate_date: 2021-06-04
+  seasons: 1
+  release_date: 2021-06-05
   director: MyString
   actor: MyString
   shoot_location: MyString

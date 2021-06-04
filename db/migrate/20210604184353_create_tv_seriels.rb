@@ -3,8 +3,8 @@ class CreateTvSeriels < ActiveRecord::Migration[6.0]
     create_table :tv_seriels do |t|
       t.string :name
       t.string :genre
-      t.integer :seans_count
-      t.date :releate_date
+      t.integer :seasons
+      t.date :release_date
       t.string :director
       t.string :actor
       t.string :shoot_location
