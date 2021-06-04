@@ -1,5 +1,10 @@
 <h2>List of TV series</h2>
-<table class="table table-striped table-bordered">
+<%= form_with url: search_actor_path, local: true do |f| %>
+  <%= f.label :actor %>
+  <%= f.text_field :actor %>
+  <%= f.submit :search %>
+<% end %>
+<table id="series_table" class="table table-striped table-bordered">
   <tr>
     <th>Name</th>
     <th>Genre</th>
@@ -21,7 +26,8 @@
       <td><%= series.actor %></td>
       <td><%= series.shoot_location %></td>
       <td><%= series.country %></td>
-      <td><%= link_to "Reviews(#{series.comments.length})", tv_series_path(series), method: :get %> | <%= link_to 'Destroy', tv_series_path(series), method: :delete %></td>
+      <td><%= link_to "Reviews(#{series.comments.length})", tv_series_path(series), method: :get %>
+        | <%= link_to 'Destroy', tv_series_path(series), method: :delete %></td>
     </tr>
   <% end %>
 </table>

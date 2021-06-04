@@ -5,4 +5,6 @@
 3. Added seed required users.
 4. Added TV series model and contoller.
 5. Added upload section for tv series and comments.
+6. View section for tv series and comments.
+7. Search section for tv series by Actor name.
 

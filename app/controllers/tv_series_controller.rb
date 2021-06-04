@@ -49,4 +49,9 @@ class TvSeriesController < ApplicationController
     TvSeriel.find(params[:id]).destroy
     redirect_back(fallback_location: tv_series_index_path)
   end
+
+  def search_actor
+    @tv_series = TvSeriel.includes(:comments).where("actor like ?", "%#{params[:actor]}%")
+    render 'tv_series/index'
+  end
 end

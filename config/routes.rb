@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :users
   resources :tv_series
   post '/tv_seriel_comments', to: 'tv_series#tv_seriel_comments', as: :tv_seriel_comments
+  post '/search_actor', to: 'tv_series#search_actor', as: :search_actor
 end
