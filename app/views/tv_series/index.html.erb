@@ -36,13 +36,13 @@
 <h2>Upload csv</h2>
 <%= form_with url: '/tv_series', local: true do |f| %>
   <%= f.label :tv_serial_list %>
-  <%= f.file_field :tv_serial_list %>
+  <%= f.file_field :file, required: true, accept: 'text/csv' %>
   <%= f.submit %>
 <% end %>
 <hr>
 <%= form_with url: '/tv_seriel_comments', local: true do |f| %>
   <%= f.label :tv_serial_comments %>
-  <%= f.file_field :tv_serial_comments %>
+  <%= f.file_field :file, required: true, accept: 'text/csv' %>
   <%= f.submit %>
 <% end %>
 

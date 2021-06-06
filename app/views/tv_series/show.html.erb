@@ -4,7 +4,7 @@
     <h2>Comments</h2>
     <% @series.comments.each do |comment| %>
       <p class="card-text"><strong><%= comment.user.name %></strong> said : <%= comment.review %>,
-        Rated: <%= comment.stars %>
+        <strong>Rated</strong>: <%= comment.stars %>
       </p>
     <% end %>
     <a href="/tv_series" class="btn btn-primary">Back</a>

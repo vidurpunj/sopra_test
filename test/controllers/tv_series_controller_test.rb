@@ -11,7 +11,7 @@ class TvSeriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index of tv series" do
-    @user = users(:vidur)
+    `@user = users(:vidur)`
     sign_in(@user)
     get '/tv_series'
     assert_response :success

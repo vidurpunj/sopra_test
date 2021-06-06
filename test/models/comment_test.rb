@@ -15,7 +15,7 @@ class CommentTest < ActiveSupport::TestCase
     assert_not comment.save
   end
 
-  test "Should shout save with all fields correct such as review user and tv seriel" do
+  test "Should shout save with all fields correct such as review, stars, user and tv serial" do
     comment = Comment.new({ review: 'Some review', stars: 5, user: users(:vidur), tv_seriel: tv_seriels(:bad_boy) })
     assert comment.save
   end

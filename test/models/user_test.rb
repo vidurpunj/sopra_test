@@ -17,4 +17,10 @@ class UserTest < ActiveSupport::TestCase
     refute user.valid?
     assert_not_nil user.errors[:email]
   end
+
+  test "An user email fall in line with a reuler expression" do
+    @user = User.new({ name: 'Vidur Punj', email: 'vidur.punj@email.com', password: 12345678 })
+    assert_match /\S+@\S+\.\S+/, @user.email
+  end
+
 end

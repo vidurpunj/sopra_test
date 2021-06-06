@@ -1,5 +1,6 @@
 class TvSeriesController < ApplicationController
   require 'roo'
+  before_action :check_file, only: %w(create tv_seriel_comments)
 
   def index
     @tv_series = TvSeriel.includes(:comments).all
@@ -10,7 +11,7 @@ class TvSeriesController < ApplicationController
   end
 
   def create
-    spreadsheet = Roo::Spreadsheet.open(params[:tv_serial_list])
+    spreadsheet = Roo::Spreadsheet.open(params[:file])
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |line|
       row = HashWithIndifferentAccess[[header, spreadsheet.row(line)].transpose]
@@ -25,11 +26,12 @@ class TvSeriesController < ApplicationController
       tv_serial.country = row["Country"]
       tv_serial.save
     end
+    flash[:notice] = 'TV series uploaded!'
     redirect_back(fallback_location: tv_series_index_path)
   end
 
   def tv_seriel_comments
-    spreadsheet = Roo::Spreadsheet.open(params[:tv_serial_comments])
+    spreadsheet = Roo::Spreadsheet.open(params[:file])
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |line|
       row = HashWithIndifferentAccess[[header, spreadsheet.row(line)].transpose]
@@ -42,16 +44,27 @@ class TvSeriesController < ApplicationController
       comment.review = row['Review']
       comment.save
     end
+    flash[:notice] = 'TV series comment uploaded!'
     redirect_back(fallback_location: tv_series_index_path)
   end
 
   def destroy
     TvSeriel.find(params[:id]).destroy
+    flash[:notice] = 'TV series removed success!'
     redirect_back(fallback_location: tv_series_index_path)
   end
 
   def search_actor
     @tv_series = TvSeriel.includes(:comments).where("actor like ?", "%#{params[:actor]}%")
     render 'tv_series/index'
+  end
+
+  ## check if uploaded file is a cvs
+  def check_file
+    if params[:file].content_type.eql?("text/csv")
+    else
+      flash[:file] = "file format Invalid, expected: text/csv Got #{params[:file].content_type}"
+      redirect_back(fallback_location: :tv_series_index_path)
+    end
   end
 end
