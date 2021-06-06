@@ -61,10 +61,14 @@ class TvSeriesController < ApplicationController
 
   ## check if uploaded file is a cvs
   def check_file
-    if params[:file].content_type.eql?("text/csv")
+    unless params[:file].blank?
+      if params[:file].content_type.eql?("text/csv")
+      else
+        flash[:alert] = "file format Invalid, expected: text/csv Got #{params[:file].content_type}"
+        redirect_back(fallback_location: :tv_series_index_path)
+      end
     else
-      flash[:file] = "file format Invalid, expected: text/csv Got #{params[:file].content_type}"
-      redirect_back(fallback_location: :tv_series_index_path)
+      flash[:alert] = 'Please provide a file to be uploaded !'
     end
   end
 end

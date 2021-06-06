@@ -19,7 +19,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     post "/tv_series"
     # params: { }
     assert_response :success
-    assert_select "h2", "User List"
   end
 
 end

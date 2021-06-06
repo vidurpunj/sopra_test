@@ -36,7 +36,7 @@
 <h2>Upload csv</h2>
 <%= form_with url: '/tv_series', local: true do |f| %>
   <%= f.label :tv_serial_list %>
-  <%= f.file_field :file, required: true, accept: 'text/csv' %>
+  <%= f.file_field :file,  accept: 'text/csv' %>
   <%= f.submit %>
 <% end %>
 <hr>
