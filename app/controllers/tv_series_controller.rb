@@ -1,6 +1,7 @@
 class TvSeriesController < ApplicationController
+  before_action :check_file, only: [:create, :tv_seriel_comments]
+
   require 'roo'
-  before_action :check_file, only: %w(create tv_seriel_comments)
 
   def index
     @tv_series = TvSeriel.includes(:comments).all
@@ -65,10 +66,11 @@ class TvSeriesController < ApplicationController
       if params[:file].content_type.eql?("text/csv")
       else
         flash[:alert] = "file format Invalid, expected: text/csv Got #{params[:file].content_type}"
-        redirect_back(fallback_location: :tv_series_index_path)
+        redirect_back(fallback_location: tv_series_index_path)
       end
     else
       flash[:alert] = 'Please provide a file to be uploaded !'
+      redirect_back(fallback_location: tv_series_index_path)
     end
   end
 end
