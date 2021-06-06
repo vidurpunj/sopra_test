@@ -37,5 +37,14 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_equal "TV series comment uploaded!", flash[:notice]
   end
 
+  # Run it with syste
+  # rails test:system test/integration/user_flows_test.rb
+  test "Check if the TV series destroyed" do
+    @user = users(:vidur)
+    sign_in(@user)
+    delete "/tv_series/#{TvSeriel.last.id}"
+    assert_response :redirect
+    assert_equal "TV series removed success!", flash[:notice]
+  end
 end
 
